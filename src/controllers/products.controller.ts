@@ -1,16 +1,21 @@
-import { Request, Response } from "express";
-import statusCodes from "../statusCodes";
-import ProductService from "../services/products.service";
+import { Request, Response } from 'express';
+import statusCodes from '../statusCodes';
+import ProductService from '../services/products.service';
 
 class ProductsController {
-    constructor(private productService = new ProductService()) { }
+  constructor(private productService = new ProductService()) { }
 
-    public create = async (req: Request, res: Response) => {
-        const product = req.body;
+  public create = async (req: Request, res: Response) => {
+    const product = req.body;
     
-        const productCreated = await this.productService.create(product);
-        res.status(statusCodes.CREATED).json(productCreated);
-      };
+    const productCreated = await this.productService.create(product);
+    res.status(statusCodes.CREATED).json(productCreated);
+  };
+
+  public getAll = async (_req: Request, res: Response) => {
+    const products = await this.productService.getAll();
+    res.status(statusCodes.OK).json(products);
+  };
 }
 
 export default ProductsController;
