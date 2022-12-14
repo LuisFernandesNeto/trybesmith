@@ -8,7 +8,7 @@ export default class UserController {
   public create = async (req: Request, res: Response) => {
     const user = req.body;
     
-    const userCreated = await this.userSevice.create(user);
-    res.status(statusCodes.CREATED).json(userCreated);
+    const token = await this.userSevice.create(user);
+    res.status(statusCodes.CREATED).json({ token });
   };
 }
