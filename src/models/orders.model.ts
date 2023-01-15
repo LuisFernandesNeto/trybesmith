@@ -1,5 +1,6 @@
 import { Pool } from 'mysql2/promise';
-import Order from '../interfaces/orders.interface';
+import { Order } from '../interfaces/orders.interface';
+import connection from './connection';
 
 export default class Orders {
   public connection: Pool;
@@ -20,4 +21,5 @@ export default class Orders {
     const [rows] = result;
     return rows as Order[];
   }
+
 }
